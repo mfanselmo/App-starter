@@ -1,0 +1,73 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider     = "postgres"
+  url          = env("DATABASE_URL")
+  relationMode = "prisma"
+}
+
+model Preparation {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  userId String
+
+  name        String
+  description String?
+  notes       String?
+
+  baseIngredients BaseIngredient[]
+  experiments     Experiment[]
+}
+
+model BaseIngredient {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  name          String
+  measure       String
+  baseAmount    Float
+  notes         String?
+  Preparation   Preparation? @relation(fields: [preparationId], references: [id])
+  preparationId String?
+
+  @@index([preparationId])
+}
+
+model Ingredient {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  name   String
+  amount Float
+  notes  String?
+
+  Experiment   Experiment? @relation(fields: [experimentId], references: [id])
+  experimentId String?
+
+  @@index([experimentId])
+}
+
+model Experiment {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  name        String
+  description String?
+  notes       String?
+  ingredients Ingredient[]
+
+  Preparation   Preparation? @relation(fields: [preparationId], references: [id])
+  preparationId String?
+
+  @@index([preparationId])
+}

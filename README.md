@@ -25,14 +25,28 @@
 - Scripts
   - `npm install` install js dependencies
   - `npm run start-db` starts the local db
+  - `npm run db-create-migration` Based on the changes of prisma.schema, it receives a name and creates a migration for the local db, doesn't run it
   - `npm run  db-migrate` runs the initial migrations of the db (adds Test model)
   - `npm run prisma-generate` Loads the prisma model into the prisma object (so TS nows what is inside the db)
   - `npm run dev` Starts dev server
 
-## DB Guide
+### DB Guide
 
 - `npm run db-create-migration`: Will ask for a migration name and create it, doesn't run it
 - `db-migrate`: Runs all pending migrations
+
+Prod
+- Automatically each build should run all pending migrations in the db
+
+## Vercel deployment
+- Obtain env variables
+  - Make sure the db is empty, otherwise you will need to reset it from the command line locally. 
+    - Note: Only do this once and then delete the env variables that can access and delete prod DB.
+    - Danger: DB port for this is 5432 in supabase, normal DB port is 6543
+    - set the env variable to the correct db, https://www.prisma.io/docs/orm/prisma-migrate/workflows/prototyping-your-schema#choosing-db-push-or-prisma-migrate
+- Import git repository in vercel
+  - Leave the defaults for build commands. Each time a build is created in vercel, it should check for migrations and apply them if needed
+  - Copy paste the .env stuff
 
 ## Next.js weird cache stuff
 

@@ -26,8 +26,8 @@
   - `npm install` install js dependencies
   - `npm run start-db` starts the local db
   - `npm run db-create-migration` Based on the changes of prisma.schema, it receives a name and creates a migration for the local db, doesn't run it
-  - `npm run  db-migrate` runs the initial migrations of the db (adds Test model)
-  - `npm run prisma-generate` Loads the prisma model into the prisma object (so TS nows what is inside the db)
+  - `npm run  db-run-pending-migrations` runs the initial migrations of the db (adds Test model)
+  - `npm run db-generate-client` Loads the prisma model into the prisma object (so TS nows what is inside the db)
   - `npm run dev` Starts dev server
 
 ### DB Guide
@@ -47,6 +47,10 @@ Prod
 - Import git repository in vercel
   - Leave the defaults for build commands. Each time a build is created in vercel, it should check for migrations and apply them if needed
   - Copy paste the .env stuff
+- Issues I had when setting a new project
+  - DB is not connecting: Create a new instance of supabase/whatever db you are using
+  - Prisma invalid ... -> `npx run migrate reset && npm run db-generate-client` (resets the whole DB) 
+  - Prepared statement s0 already exists: add `"?pgbouncer=true&connection_limit=1"` to `DATABASE_URL` (in theory is no longer needed since pgbouncer is deprecated but didn't work without it)
 
 ## Next.js weird cache stuff
 

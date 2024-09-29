@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start-db": "docker-compose up -d",
-    "stop-db": "docker-compose down",
+    "start-db": "docker compose up -d",
+    "stop-db": "docker compose down",
     "dev": "next dev",
     "build": "prisma migrate deploy && prisma generate && next build",
     "start": "next start",
@@ -37,7 +37,7 @@
     "@trpc/client": "^11.0.0-rc.502",
     "@trpc/react-query": "^11.0.0-rc.502",
     "@trpc/server": "^11.0.0-rc.502",
-    "@uploadthing/react": "^6.7.2",
+    "@uploadthing/react": "^7.0.2",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "date-fns": "^3.6.0",
@@ -52,7 +52,7 @@
     "superjson": "^2.2.1",
     "tailwind-merge": "^2.4.0",
     "tailwindcss-animate": "^1.0.7",
-    "uploadthing": "^6.13.2",
+    "uploadthing": "7.0.2",
     "zod": "^3.23.8"
   },
   "devDependencies": {

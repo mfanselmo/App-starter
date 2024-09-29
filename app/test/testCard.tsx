@@ -1,6 +1,7 @@
 "use client";
 
 import { type inferRouterOutputs } from "@trpc/server";
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
@@ -59,6 +60,14 @@ export const TestCard = (props: {
       </CardHeader>
       <CardContent>
         <CardDescription>{props.test.dateField.toDateString()}</CardDescription>
+        {props.test.imageUrlField && (
+          <Image
+            src={props.test.imageUrlField}
+            alt="image"
+            width={200}
+            height={200}
+          />
+        )}
       </CardContent>
       <CardFooter>
         <EditDialog test={props.test} />

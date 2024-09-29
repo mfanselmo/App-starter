@@ -14,8 +14,6 @@ export const ourFileRouter = {
       return { userId: user.id };
     })
     .onUploadComplete(({ metadata, file: _req }) => {
-      // TODO: add file info to database
-
       return { uploadedBy: metadata.userId };
     }),
 } satisfies FileRouter;

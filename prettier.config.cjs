@@ -15,6 +15,7 @@ const config = {
     "^@/lib/(.*)$",
     "^@/components/ui/(.*)$",
     "^@/components/form/(.*)$",
+    "^@/components/(.*)$",
     "^[./]",
   ],
   importOrderSeparation: true,

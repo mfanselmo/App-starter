@@ -25,6 +25,7 @@ import { Form } from "@/components/ui/form";
 
 import { CheckboxInput } from "@/components/form/Checkbox";
 import { DateInput } from "@/components/form/Date";
+import { FileInput } from "@/components/form/File";
 import { FormInput } from "@/components/form/Input";
 import { SelectInput } from "@/components/form/Select";
 import { SwitchInput } from "@/components/form/Switch";
@@ -53,6 +54,7 @@ export function EditDialog(props: {
       checkboxField: props.test.checkboxField,
       selectField: props.test.selectField,
       dateField: props.test.dateField,
+      imageUrlField: props.test.imageUrlField,
     },
   });
 
@@ -116,6 +118,13 @@ export function EditDialog(props: {
               disabled={(date: Date) =>
                 date > new Date() || date < new Date("1900-01-01")
               }
+            />
+            <FileInput
+              control={form.control}
+              name="imageUrlField"
+              label="Image Field"
+              description="Some image to upload."
+              endpoint="imageUploader"
             />
 
             <DialogFooter>

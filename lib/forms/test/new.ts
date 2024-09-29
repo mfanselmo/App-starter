@@ -14,4 +14,5 @@ export const newTestFormSchema = z.object({
     .string()
     .refine((val) => selectFieldValues.some((v) => v.value === val)),
   dateField: z.date(),
+  imageUrlField: z.string().url().nullable(),
 });

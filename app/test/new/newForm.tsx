@@ -14,6 +14,7 @@ import { Form } from "@/components/ui/form";
 
 import { CheckboxInput } from "@/components/form/Checkbox";
 import { DateInput } from "@/components/form/Date";
+import { FileInput } from "@/components/form/File";
 import { FormInput } from "@/components/form/Input";
 import { SelectInput } from "@/components/form/Select";
 import { SwitchInput } from "@/components/form/Switch";
@@ -26,6 +27,9 @@ export function TestForm() {
       onSuccess: () => {
         router.push("/test");
         router.refresh();
+      },
+      onError: (error) => {
+        console.error("Error creating test", error);
       },
     });
   const form = useForm<z.infer<typeof newTestFormSchema>>({
@@ -87,6 +91,13 @@ export function TestForm() {
           disabled={(date: Date) =>
             date > new Date() || date < new Date("1900-01-01")
           }
+        />
+        <FileInput
+          control={form.control}
+          name="imageUrlField"
+          label="Image Field"
+          description="Some image to upload."
+          endpoint="imageUploader"
         />
 
         <Button type="submit" loading={isPending}>

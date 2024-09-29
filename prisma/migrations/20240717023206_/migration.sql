@@ -10,6 +10,8 @@ CREATE TABLE "Test" (
     "checkboxField" BOOLEAN NOT NULL,
     "selectField" TEXT NOT NULL,
     "dateField" TIMESTAMP(3) NOT NULL,
+    "imageUrlField" TEXT,
+
 
     CONSTRAINT "Test_pkey" PRIMARY KEY ("id")
 );

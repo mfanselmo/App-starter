@@ -25,4 +25,5 @@ model Test {
   checkboxField Boolean
   selectField   String
   dateField     DateTime
+  imageUrlField String?
 }

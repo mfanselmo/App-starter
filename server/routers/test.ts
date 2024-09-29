@@ -1,6 +1,7 @@
 import { TRPCError } from "@trpc/server";
 import * as z from "zod";
 
+import { editTestFormSchema } from "@/lib/forms/test/edit";
 import { newTestFormSchema } from "@/lib/forms/test/new";
 
 import { privateProcedure, router } from "../trpc";
@@ -51,7 +52,7 @@ export const testsRouter = router({
     .input(
       z.object({
         id: z.string(),
-        data: newTestFormSchema,
+        data: editTestFormSchema,
       }),
     )
     .mutation(async ({ ctx, input }) => {

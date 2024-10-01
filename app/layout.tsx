@@ -10,6 +10,8 @@ import { ourFileRouter } from "@/app/api/uploadthing/core";
 
 import { cn } from "@/lib/utils";
 
+import { Toaster } from "@/components/ui/toaster";
+
 import Header from "@/components/header";
 import Unauthenticated from "@/components/unauthenticated";
 
@@ -40,6 +42,7 @@ export default function RootLayout({
               fontSans.variable,
             )}
           >
+            <Toaster />
             <NextSSRPlugin routerConfig={extractRouterConfig(ourFileRouter)} />
             <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
               <Header />

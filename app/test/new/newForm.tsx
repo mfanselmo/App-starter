@@ -19,12 +19,21 @@ import { FormInput } from "@/components/form/Input";
 import { SelectInput } from "@/components/form/Select";
 import { SwitchInput } from "@/components/form/Switch";
 
+import { useToast } from "@/components/hooks/use-toast";
+
 export function TestForm() {
   const router = useRouter();
+  const { toast } = useToast();
 
   const { mutate: createTest, isPending } =
     trpc.testsRouter.createTest.useMutation({
       onSuccess: () => {
+        toast({
+          title: "Success",
+          description: "New Test created",
+          variant: "success",
+        });
+
         router.push("/test");
         router.refresh();
       },
@@ -46,7 +55,10 @@ export function TestForm() {
 
   return (
     <Form {...form}>
-      <form className="space-y-8" onSubmit={form.handleSubmit(onSubmit)}>
+      <form
+        className="space-y-8 bg-success"
+        onSubmit={form.handleSubmit(onSubmit)}
+      >
         <FormInput
           control={form.control}
           name={"stringField"}

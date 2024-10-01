@@ -66,7 +66,7 @@ export function EditDialog(props: {
       <DialogTrigger asChild>
         <Button variant="outline">Edit Test</Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent>
         <DialogHeader>
           <DialogTitle>Edit Test</DialogTitle>
           <DialogDescription>
